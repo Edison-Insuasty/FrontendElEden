@@ -1,0 +1,34 @@
+<div class="container text-center pb-5">
+    <img src="../../assets/eden2.png" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; opacity: 0.75;" width="19150" height="11150">
+    <div>
+        <br><br><br><br><br>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+
+                    <h1 style="text-align:center">
+                        <p style="color:#eeb155">CREDENCIALES DE INICIO DE SESIÓN</p>
+                    </h1>
+
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form (ngSubmit)="autenticar()" #clienteForm="ngForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="nombre" placeholder="eden.com" required [(ngModel)]="nombre_us" name="nombre">
+                            <label for="floatingInput">Nombre de usuario</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="clave_us" placeholder="Contraseña" required [(ngModel)]="clave_us" name="clave_us">
+                            <label for="floatingPassword">Contraseña</label>
+                        </div>
+                        <button class="w-30 mb-2 btn btn-primary" type="submit" [disabled]="!clienteForm.form.valid">INICIAR SESIÓN</button>
+                        <hr class="my-4">
+                        <a routerLink="/productos/login"><button class="btn btn-success pull-right" > REGISTRARSE</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a routerLink="/productos"><button class="btn btn-success pull-right" >VOLVER</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

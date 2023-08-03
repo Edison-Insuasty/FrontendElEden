@@ -1,0 +1,63 @@
+<div class="container text-center pb-5">
+    <img src="../../assets/eden2.png" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; opacity: 0.75;" width="19150" height="11150">
+    <div class="container ">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a routerLink="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img src="../../assets/eden.png" width="25%" alt="img">
+                </a>
+            </div>
+            <form class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" (ngSubmit)="buscarProducto()" #buscarForm="ngForm">
+                <input type="search" class="form-control form-control-dark" id="nombre" placeholder="Buscar" required [(ngModel)]="nombre" name="nombre">
+            </form>
+
+            <div class="col-md-4 text-end">
+                <a routerLink="/productos/login"><button class="btn btn-success pull-right" > REGISTRARSE</button></a>&nbsp;&nbsp;
+                <a routerLink="/productos/sesion"><button class="btn btn-success pull-right" >INICIAR SESION</button></a>
+            </div>
+        </header>
+    </div>
+
+
+
+    <h3 style="text-align:center">
+        <p style="color:#eeb155">FRUTAS Y VERDURAS EL EDEN</p>
+    </h3>
+    <main>
+        <section class="our-publication pt-100 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div *ngFor="let producto of productos | async" class="col-sm-6 col-lg-4">
+                        <div class="single-publication">
+                            <figure style="width:350px;">
+                                <div class="card-deck mb-3 text-center">
+                                    <div class="card mb-4 shadow-sm" category="">
+                                        <div class="card-header">
+                                            <h4 class="my-0 font-weight-bold"> {{producto.nombre}}</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <a><img class="img-fluid" src="assets/{{ producto.imagen}}" alt="..." /></a>
+                                            <br><br>
+                                            <h4 class="card-title pricing-card-title precio" style="color:#23cd23">POR SOLO $ <span class="">{{ producto.precio }}</span></h4>
+                                            <ul class="list-unstyled mt-3 mb-4">
+                                                <br>
+                                                <form class="row g-3" (ngSubmit)="verificarsesion()">
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-success" type="submit">COMPRAR</button>
+                                                    </div>
+                                                </form>
+                                                <li></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+</div>

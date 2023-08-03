@@ -1,0 +1,115 @@
+<body>
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">PAGINA DE ADMINISTRACIÓN</h1>
+            <a routerLink="/productos"><button class="btn btn-success pull-right" >CERRAR SESIÓN ADMINISTRADOR</button></a>
+        </div>
+    </div>
+    <!-- Productos -->
+
+    <h3 style="text-align:center">
+        <p style="color:#eeb155">ADMINSTRAR PRODUCTOS</p>
+    </h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <form class="form-inline">
+                    <fieldset class="form-group col-sm-11"></fieldset>
+                    <fieldset class="form-group col-sm-1">
+                        <a class="btn btn-primary" [routerLink]="['/productos/agregar']">Nuevo Producto</a>
+                    </fieldset>
+                </form>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="row">
+                            <th class="col-sm-1"> ID </th>
+                            <th class="col-sm-2"> NOMBRE </th>
+                            <th class="col-sm-2"> DETALLE </th>
+                            <th class="col-sm-1"> PRECIO</th>
+                            <th class="col-sm-2"> IMAGEN</th>
+                            <th class="col-sm-2"> ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of productos | async" class="row">
+                            <td class="col-sm-1"><i>{{ producto.idProducto }}</i></td>
+                            <td class="col-sm-2"><i>{{ producto.nombre }}</i></td>
+                            <td class="col-sm-2"><i>{{ producto.detalle }}</i></td>
+
+                            <td class="col-sm-1"><i>{{ producto.precio }}</i></td>
+                            <td class="col-sm-2"><img class="img-fluid" src="assets/{{ producto.imagen}}" alt="..." /></td>
+                            <!-- <td class="col-sm-2"><i>{{ producto.imagen }}</i></td> -->
+                            <td class="col-sm-1">
+                                <fieldset class="form-group col-sm-1">
+                                    <a class="btn btn-info" [routerLink]="['/productos/editar/', producto.idProducto]">Editar</a>
+                                </fieldset>
+                            </td>
+                            <td class="col-sm-1">
+                                <fieldset class="form-group col-sm-1">
+                                    <a class="btn btn-danger" (click)="borrarProducto(producto.idProducto)">Borrar</a>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- PEDIDOS -->
+    <br><br><br>
+    <h3 style="text-align:center">
+        <p style="color:#eeb155">ADMINSTRAR PEDIDOS</p>
+    </h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="row">
+                            <th class="col-sm-1"> ID_COMPRA </th>
+                            <th class="col-sm-1"> NOMBRE_CLIENTE </th>
+                            <th class="col-sm-2"> CORREO </th>
+                            <th class="col-sm-1"> TELEFONO</th>
+                            <th class="col-sm-1"> PRODUCTO</th>
+                            <th class="col-sm-1"> CANTIDAD</th>
+                            <th class="col-sm-1"> PRECIO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of productos2 | async" class="row">
+                            <td class="col-sm-1"><i>{{ producto.idCompra }}</i></td>
+                            <td class="col-sm-1"><i>{{ producto.nombre_cli }}</i></td>
+                            <td class="col-sm-2"><i>{{ producto.correo_cli }}</i></td>
+                            <td class="col-sm-1"><i>{{ producto.telefono_cli }}</i></td>
+                            <td class="col-sm-1"><i>{{ producto.nombre_pro }}</i></td>
+                            <td class="col-sm-1"><i>{{ producto.cantidad }}</i></td>
+
+                            <td class="col-sm-1"><i>{{ producto.precio }}</i></td>
+
+
+                            <td class="col-sm-2">
+
+                                <form (ngSubmit)="aprobar()" #clienteForm="ngForm">
+                                    <button class="w-30 mb-2 btn btn-primary" type="submit" [disabled]="!clienteForm.form.valid">APROBAR COMPRA</button>
+                                </form>
+                            </td>
+                            <td class="col-sm-2">
+                                <fieldset class="form-group col-sm-1">
+                                    <a class="btn btn-danger" (click)="borrarCompra(producto.idCompra)">CANCELAR COMPRA</a>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
